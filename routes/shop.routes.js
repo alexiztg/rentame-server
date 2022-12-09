@@ -2,7 +2,7 @@
 //1. Generar el router
 const router = require("express").Router()
 const Shop = require("../models/Shop.Model")
-const mongoose = require("mongoose")
+const ValidId = require("../middleware/ValidId")
 
 //2. Generar las rutas
 //Create - POST - Crear una nueva shop 
@@ -29,14 +29,9 @@ router.get("/shops",async (req,res)=>{
 });
 
 //Read - GET - Detalle de una shop
-router.get("/shops/:id",async (req,res)=>{
+router.get("/shops/:id",ValidId, async (req,res)=>{
     try{
         const {id} = req.params;
-        //Validamos que el ID sea correcto
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            res.status(400).json({ message: 'Specified id is not valid' });
-            return;
-          }
         //GET - Model.findById(id)
         const shopDetails = await Shop.findById(id)
         res.json(shopDetails)
@@ -46,38 +41,26 @@ router.get("/shops/:id",async (req,res)=>{
 });
 
 //Update - PUT - Actualizar una shop 
-router.put("/shops/:id",async (req,res)=>{
+router.put("/shops/:id",ValidId, async (req,res)=>{
     try{
         const {id} = req.params;
-         //Validamos que el ID sea correcto
-         if (!mongoose.Types.ObjectId.isValid(id)) {
-            res.status(400).json({ message: 'Specified id is not valid' });
-            return;
-          }
          //PUT - Model.findByIdAndUpdate(id, nuevosDatos,{new:true})
          const shopActualizada = await Shop.findByIdAndUpdate(id,req.body,{new:true}) 
         res.json(shopActualizada)
     }catch(err){
         console.log(err);
     }
-    
 });
 
 //Delete - DELETE - Eliminar una shop 
-router.delete("/shops/:id", (req,res)=>{
+router.delete("/shops/:id",ValidId, (req,res)=>{
     const {id} = req.params;
-    //Validamos que el ID sea correcto
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        res.status(400).json({ message: 'Specified id is not valid' });
-        return;
-      }
     //Delete - Model.findByIdAndDelete(id)
     Shop.findOneAndDelete(id)
     .then((shopEliminada)=>{
         res.json(shopEliminada)
     })
     .catch((err)=>console.log(err))  
-    
 });
 
 module.exports = router;
