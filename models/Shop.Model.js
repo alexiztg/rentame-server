@@ -35,6 +35,11 @@ const shopSchema = new Schema(
       //Se agrega el arreglo entre [] porque tiene relacion de 1:N
       type:Schema.Types.ObjectId, ref:"Rent"
     }]
+    ,
+    review:[{
+      //Se agrega el arreglo entre [] porque tiene relacion de 1:N
+      type:Schema.Types.ObjectId, ref:"Review"
+    }]
   }
   ,
   {

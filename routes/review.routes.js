@@ -3,15 +3,20 @@
 const router = require("express").Router()
 const Review = require("../models/Review.Model")
 const ValidId = require("../middleware/ValidId")
+const Shop = require("../models/Shop.Model")
 
 //2. Generar las rutas
 //Create - POST - Crear una nueva review 
 router.post("/shops/:id/review/create",ValidId, async (req,res)=>{
     try{
         const {id} = req.params;
-        console.log(id);
         //POST - Model.create(datos)
         const reviewCreate = await Review.create(req.body)
+        //Vinculamos la nueva review con la Shop
+        console.log(reviewCreate);
+        const {_id, ownerShop} = reviewCreate
+        const shopActualizada = await Shop.findByIdAndUpdate(ownerShop,{$push:{review:_id}})
+        console.log("uno",shopActualizada);
         res.json(reviewCreate)
     }catch(err){
         console.log(err);

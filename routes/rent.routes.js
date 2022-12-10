@@ -3,6 +3,7 @@
 const router = require("express").Router()
 const Rent = require("../models/Rent.Model")
 const ValidId = require("../middleware/ValidId")
+const Shop = require("../models/Shop.Model")
 
 //2. Generar las rutas
 //Create - POST - Crear una nueva rent 
@@ -11,6 +12,11 @@ router.post("/shops/:id/rent/create",ValidId, async (req,res)=>{
         const {id} = req.params;
         //POST - Model.create(datos)
         const rentCreate = await Rent.create(req.body)
+        //Vinculamos la nueva rent con la nueva Shop
+        console.log(rentCreate);
+        const {_id, shop} = rentCreate
+        const shopActualizada = await Shop.findByIdAndUpdate(shop,{$push:{rent:_id}})
+        console.log("uno",shopActualizada);
         res.json(rentCreate)
     }catch(err){
         console.log(err);

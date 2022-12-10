@@ -4,6 +4,7 @@ const router = require("express").Router()
 const Shop = require("../models/Shop.Model")
 const ValidId = require("../middleware/ValidId")
 
+
 //2. Generar las rutas
 //Create - POST - Crear una nueva shop 
 router.post("/shops", (req,res)=>{
