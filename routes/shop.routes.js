@@ -22,7 +22,8 @@ router.post("/shops", (req,res)=>{
 router.get("/shops",async (req,res)=>{
     try{
         //GET - Model.find(filtro?)
-        const shops = await Shop.find();
+        //.populate("llaves")
+        const shops = await Shop.find().populate("rent").populate("review")
         res.json(shops);
     }catch(err){
         console.log(err);
