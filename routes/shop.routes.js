@@ -35,7 +35,7 @@ router.get("/shops/:id",ValidId, async (req,res)=>{
     try{
         const {id} = req.params;
         //GET - Model.findById(id)
-        const shopDetails = await Shop.findById(id)
+        const shopDetails = await Shop.findById(id).populate("rent").populate("review")
         res.json(shopDetails)
     }catch(err){
         console.log(err);
