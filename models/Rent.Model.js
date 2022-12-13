@@ -9,10 +9,12 @@ const rentSchema = new Schema(
     },
     date_start: {
         type: Date,
-        required:true
+        required:true,
+        trim: true,
     },
     date_end: {
         type: Date,
+        trim: true,
         required:true
     },
     shop:{

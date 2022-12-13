@@ -4,10 +4,12 @@ const reviewSchema = new Schema(
   {
     review: {
       type: String,
+      trim: true,
       required: true
     },
 	title: {
       type: String,
+      trim: true,
       required: true,
     },
     date: {

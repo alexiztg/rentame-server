@@ -5,22 +5,27 @@ const shopSchema = new Schema(
   {
     name: {
         type:String,
+        trim: true,
         required:true 
     },
     address:{
         type:String,
+        trim: true,
         required:true 
     },
     cost:{
         type:Number,
+        trim: true,
         required:true 
     },
     colony: {
         type:String,
+        trim: true,
         required:true 
     },
     description:{
         type:String,
+        trim: true,
         required:true 
     },
     image: {
