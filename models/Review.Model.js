@@ -22,7 +22,7 @@ const reviewSchema = new Schema(
       ref:"User",
       required: true,
     },
-    ownerShop: {
+    shop: {
       type: Schema.Types.ObjectId,
       ref:"Shop",
       required: true,

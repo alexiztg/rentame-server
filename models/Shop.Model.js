@@ -21,6 +21,7 @@ const shopSchema = new Schema(
     colony: {
         type:String,
         trim: true,
+        lowercase: true,
         required:true 
     },
     description:{
@@ -36,10 +37,10 @@ const shopSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref:"User"
     },
-    rent:[{
+    rent:{
       //Se agrega el arreglo entre [] porque tiene relacion de 1:N
       type:Schema.Types.ObjectId, ref:"Rent"
-    }]
+    }
     ,
     review:[{
       //Se agrega el arreglo entre [] porque tiene relacion de 1:N
