@@ -17,6 +17,11 @@ const rentSchema = new Schema(
         trim: true,
         required:true
     },
+    owner:{
+      type: Schema.Types.ObjectId,
+      ref:"User",
+      required: true,
+    },
     shop:{
       type: Schema.Types.ObjectId,
       ref:"Shop"

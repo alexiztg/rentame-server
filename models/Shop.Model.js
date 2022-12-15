@@ -38,7 +38,7 @@ const shopSchema = new Schema(
       ref:"User"
     },
     rent:{
-      //Se agrega el arreglo entre [] porque tiene relacion de 1:N
+      //Se agrega el arreglo entre [] porque tiene relacion de 1:1
       type:Schema.Types.ObjectId, ref:"Rent"
     }
     ,
