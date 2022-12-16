@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const axios = require("axios");
 
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
@@ -67,6 +68,22 @@ router.post("/signup", (req, res, next) => {
 
       // Create a new object that doesn't expose the password
       const user = { email, name, _id };
+
+      //Send EMAIL
+      const data = {
+        service_id: process.env.SERVICE_ID,
+        template_id: process.env.TEMPLATE_ID,
+        user_id: process.env.USER_ID,
+        accessToken: process.env.accessToken,
+        template_params: {
+            email,name
+        }
+    };
+
+      axios
+      .post("https://api.emailjs.com/api/v1.0/email/send",data)
+      .then(console.log)
+      .catch(console.log)
 
       // Send a json response containing the user object
       res.status(201).json({ user: user });
