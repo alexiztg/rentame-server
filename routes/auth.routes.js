@@ -69,7 +69,7 @@ router.post("/signup", (req, res, next) => {
       // Create a new object that doesn't expose the password
       const user = { email, name, _id };
 
-      //Send EMAIL
+      //Send EMAIL DONE
       const data = {
         service_id: process.env.SERVICE_ID,
         template_id: process.env.TEMPLATE_ID,
