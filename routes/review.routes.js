@@ -65,7 +65,7 @@ router.put("/shops/:id/review/:id",ValidId, async (req,res)=>{
 router.delete("/shops/:id/review/:id",ValidId, (req,res)=>{
     const {id} = req.params;
     //Delete - Model.findByIdAndDelete(id)
-    Review.findOneAndDelete(id)
+    Review.findByIdAndDelete(id)
     .then((reviewEliminada)=>{
         res.json(reviewEliminada)
     })

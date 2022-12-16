@@ -63,7 +63,7 @@ router.put("/shops/:id/rent/:id",ValidId, async (req,res)=>{
 router.delete("/shops/:id/rent/:id",ValidId, (req,res)=>{
     const {id} = req.params;
     //Delete - Model.findByIdAndDelete(id)
-    Rent.findOneAndDelete(id)
+    Rent.findByIdAndDelete(id)
     .then((rentEliminada)=>{
         res.json(rentEliminada)
     })
